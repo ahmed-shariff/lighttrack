@@ -104,7 +104,7 @@ class IO():
         parser.add_argument('-c', '--config', default=None, help='path to the configuration file')
 
         # processor
-        parser.add_argument('--use_gpu', type=str2bool, default=True, help='use GPUs or not')
+        parser.add_argument('--use_gpu', type=str2bool, default=False, help='use GPUs or not')
         parser.add_argument('--device', type=int, default=0, nargs='+', help='the indexes of GPUs for training or testing')
 
         # visulize and debug

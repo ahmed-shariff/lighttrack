@@ -26,7 +26,10 @@ from HPE.config import cfg
 from tfflat.base import Tester
 from tfflat.utils import mem_info
 from tfflat.logger import colorlogger
-from nms.gpu_nms import gpu_nms
+try:
+    from nms.gpu_nms import gpu_nms
+except ImportError:
+    gpu_nms = None
 from nms.cpu_nms import cpu_nms
 
 # import GCN utils
@@ -51,7 +54,7 @@ def initialize_parameters():
     global video_name, img_id
 
     global nms_method, nms_thresh, min_scores, min_box_size
-    nms_method = 'nms'
+    nms_method = 'nms' if gpu_nms is not None else 'soft'
     nms_thresh = 1.
     min_scores = 1e-10
     min_box_size = 0.
